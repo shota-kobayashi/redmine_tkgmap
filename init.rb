@@ -1,31 +1,27 @@
 require 'custom_fields_helper_patch'
+require 'issues_helper_patch'
 
 Redmine::Plugin.register :redmine_tkgmap do
   name 'Redmine Tkgmap plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'Shota.K'
+  description 'Adding lat lng chooser with google map.'
   version '0.0.1'
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
-  settings :partial => 'settings/redmine_rt_custom_field_settings',
-    :default => {
-      'tkg_url' => 'http://path.to.rt.com/',
-      'new_window' => 'true',
-    }
-
+  settings :default => {
+		'map_width' => 100,
+		'map_height' => 100,
+		'default_lat' => 43.68731521012838,
+		'default_lng' => -79.37548889160155
+  }, :partial => 'settings/tkgmap_settings'
 end
 
 class Tkgmap < Redmine::CustomFieldFormat
 	field_format = "tkg"
-  def format_as_tkg(value)
-    if Setting.plugin_redmine_tkgmap['new_window'] == "true"
-      target = 'blank'
-    else
-      target = ''
-    end
-    ActionController::Base.helpers.link_to(value, Setting.plugin_redmine_tkgmap['tkg_url'] + "Ticket/Display.html?id=" + value, :target => target)
-  end
+	def format_as_tkg(value)
+		value
+	end
 end
 
 Redmine::CustomFieldFormat.map do |fields|
@@ -36,5 +32,8 @@ end
 Rails.configuration.to_prepare do
     unless CustomFieldsHelper.included_modules.include?(CustomFieldsHelperPatch)
         CustomFieldsHelper.send(:include, CustomFieldsHelperPatch)
+    end  
+    unless IssuesHelper.included_modules.include?(IssuesHelperPatch)
+        IssuesHelper.send(:include, IssuesHelperPatch)
     end  
 end
