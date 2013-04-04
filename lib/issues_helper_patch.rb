@@ -27,7 +27,7 @@ module IssuesHelperPatch
 					script ="//<![CDATA[
 						$(function(){
 							setTimeout(function(){
-							initMap(#{latLng[0]},#{latLng[1]});
+							initMap(#{latLng[0]},#{latLng[1]}, false);
 							},500);
 						});
 					//]]>"

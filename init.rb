@@ -5,9 +5,9 @@ Redmine::Plugin.register :redmine_tkgmap do
   name 'Redmine Tkgmap plugin'
   author 'Shota.K'
   description 'Adding lat lng chooser with google map.'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  version '0.1'
+  url 'https://github.com/shota-kobayashi/redmine_tkgmap'
+  author_url 'https://github.com/shota-kobayashi/redmine_tkgmap'
 
   settings :default => {
 		'map_width' => 100,
