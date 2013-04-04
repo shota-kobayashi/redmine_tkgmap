@@ -1,3 +1,8 @@
 = redmine_tkgmap
 
-Description goes here
+Adding a custom field that can choose latlng by google map.
+
+-----------------------------------------
+Installation
+
+Just put this plugin to plugin dir, and then you can select this custom field.
