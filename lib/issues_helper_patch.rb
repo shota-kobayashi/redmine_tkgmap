@@ -22,7 +22,7 @@ module IssuesHelperPatch
 			ordered_values.compact.each do |value|
 				s << "</tr>\n<tr>\n" if n > 0 && (n % 2) == 0
 
-				if(value.custom_field.name == l(:label_tkg) && show_value(value)!="")
+				if(value.custom_field.field_format == Tkgmap::Identifier && show_value(value)!="")
 					latLng = show_value(value).split(",")
 					script ="//<![CDATA[
 						$(function(){
