@@ -1,6 +1,6 @@
 # redmine_tkgmap
 
-Adding a custom field that can choose latlng by google map.
+Adding a custom field that can choose latitude/longitude of location using google maps.
 
 -----------------------------------------
 ##Installation
