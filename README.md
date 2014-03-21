@@ -7,9 +7,9 @@ Adding a custom field that can choose latitude/longitude of location using googl
 
 Just put this plugin to plugin dir, and then you can select this custom field.
 
-[Issue with modifiable location](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss1.jpg)  
-[Issue with inline map and location](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss2.jpg)  
-[Configure Default settings for tkgmap](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss3.jpg)  
+![Issue with modifiable location](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss1.jpg)  
+![Issue with inline map and location](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss2.jpg)  
+![Configure Default settings for tkgmap](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss3.jpg)  
 
 
 ```
