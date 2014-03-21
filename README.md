@@ -1,10 +1,11 @@
 # redmine_tkgmap  
 Adding a custom field that can choose latitude/longitude of location using google maps.  
-
+Note: This is an English language fork of original Japanese language code.  
+  
 ----
 
 ##Installation
-Just put this plugin to plugin dir, and then you can select this custom field.
+Just put this plugin to plugin dir, and then you can use the custom location field.
 
 
 ```
@@ -26,7 +27,15 @@ d) Can also opt for 'required' setting for custom field.
 e) Optionally select 'searchable' setting for custom field. Allows using custom-field as filter in search/custom-queries.  
 
 ----
-## ScreenShots
+## English ScreenShots
+![Issue with custom field for Latitude/Longitude and inline map](https://f.cloud.github.com/assets/445260/2414895/4c4e20b6-aaef-11e3-9af8-273f98b7051c.JPG)  
+  
+![Update Issue with location using select button](https://f.cloud.github.com/assets/445260/2414894/4c4b0368-aaef-11e3-82e2-5bc38fe30c1d.JPG)  
+  
+![Popup Window to Modify/Select Location](https://f.cloud.github.com/assets/445260/2418159/b6fa0a6c-ab38-11e3-99fd-2eafc193e021.JPG)  
+  
+----
+## Japanese screenshots
 ![Issue with inline map and location field](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss2.jpg)  
   
 ![Update Issue with modifiable location in popup window](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss1.jpg)  
