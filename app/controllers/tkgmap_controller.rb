@@ -1,6 +1,6 @@
 class TkgmapController < ApplicationController
   unloadable
-
+  layout 'tkgmap'
 
   def index
   end
