@@ -1,0 +1,5 @@
+# Turkish strings go here for Rails i18n
+tr:
+  label_tkg: "LatLng"
+  set_lat_lng_tkg: "Seç"
+  window_close_tkg: "Kapat"

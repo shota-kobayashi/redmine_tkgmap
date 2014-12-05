@@ -17,18 +17,23 @@ Redmine::Plugin.register :redmine_tkgmap do
   }, :partial => 'settings/tkgmap_settings'
 end
 
-class Tkgmap < Redmine::CustomFieldFormat
+class Tkgmap < Redmine::FieldFormat::Unbounded
+	add 'tkg'
 	Identifier = "tkg"
-	field_format = Identifier
+	
+	def format_name
+	 "tkg"
+	end
+	
+	def label
+	 "label_tkg"
+	end
+	
 	def format_as_tkg(value)
 		value
 	end
 end
-
-Redmine::CustomFieldFormat.map do |fields|
-  fields.register Tkgmap.new('tkg', :label => :label_tkg, :order => 9)
-end
-
+Redmine::FieldFormat.add 'tkg', Tkgmap
 
 Rails.configuration.to_prepare do
     unless CustomFieldsHelper.included_modules.include?(CustomFieldsHelperPatch)
