@@ -4,9 +4,7 @@
 <script type="text/javascript">
 //<![CDATA[
 $(function(){
-  setTimeout(function(){
-    initMap(<%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %>, true);
-  },500);
+  initMap(<%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %>, true);
 });
 //]]>
 </script>
