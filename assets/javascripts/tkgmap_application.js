@@ -20,7 +20,7 @@
 		}
 
 		function setMarker(lat,lng,map,fixedCenter){
-        var centermarkImage = '/redmine/plugin_assets/redmine_tkgmap/images/red-dot.png';
+        var centermarkImage = '/plugin_assets/redmine_tkgmap/images/red-dot.png';
         var image = new google.maps.MarkerImage(centermarkImage,
 					new google.maps.Size(32,32), new google.maps.Point(0,0), new google.maps.Point(16,16));
 				var latLng = new google.maps.LatLng(lat, lng);
