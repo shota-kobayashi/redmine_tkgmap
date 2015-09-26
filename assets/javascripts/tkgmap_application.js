@@ -43,5 +43,6 @@
 
     function returnValue() {
 			var latLng = map.getCenter();
+      latLng = new google.maps.LatLng(latLng.lat(), latLng.lng()); // see https://code.google.com/p/gmaps-api-issues/issues/detail?id=3247
       window.opener.$("#" + window.name).val(latLng.lat() + "," + latLng.lng());
     }
