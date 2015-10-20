@@ -19,7 +19,7 @@ module CustomFieldsHelperPatch
 				windowHeight = Setting.plugin_redmine_tkgmap['map_height'].to_i + 30
 				customFieldId = "#{name}_custom_field_values_#{custom_field.id}"
 				s << javascript_include_tag('showMapWindow',:plugin => 'redmine_tkgmap')
-				s << content_tag("input", "", {:type => 'button', :onClick =>"showMapWindow(\"/redmine/tkgmap/window\", \"#{customFieldId}\", #{windowWidth}, #{windowHeight});", :value=>l(:set_lat_lng_tkg)})
+				s << content_tag("input", "", {:type => 'button', :onClick =>"showMapWindow(\"#{url_for(:controller => 'tkgmap', :action => 'window')}\", \"#{customFieldId}\", #{windowWidth}, #{windowHeight});", :value=>l(:set_lat_lng_tkg)})
 			else
 				s = custom_field_tag_without_tkg(name, custom_value)
 			end
