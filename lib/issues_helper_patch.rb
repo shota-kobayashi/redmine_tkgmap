@@ -31,7 +31,7 @@ module IssuesHelperPatch
 					//]]>"
 				  s << javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap')
 					s << javascript_include_tag('showMapWindow',:plugin => 'redmine_tkgmap')
-					s << content_tag("script", "",{:src =>'https://maps.google.com/maps/api/js?v=3&sensor=false', :type =>'text/javascript', :charset=>'UTF-8'})
+					s << content_tag("script", "",{:src =>gmap_api_uri, :type =>'text/javascript', :charset=>'UTF-8'})
 					s << "\t<th>#{ h(value.custom_field.name) }:</th><td><a href=\"https://maps.google.com/maps?q=#{latLng[0]},#{latLng[1]}\">#{ simple_format_without_paragraph(h(show_value(value))) }</a><div id=\"gmap\" style=\"width:100%;height:200px;\"></div></td>\n"
 					s << content_tag("script", script,{:type =>'text/javascript'})
 				else

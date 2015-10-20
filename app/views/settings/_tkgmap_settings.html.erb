@@ -1,5 +1,8 @@
 <p>
   <table> 
+  <tr><td> Google Maps API Key </td><td>
+  <%= text_field_tag('settings[gmap_api_key]', @settings['gmap_api_key'])%>
+  </td></tr>
   <tr><td> Default map width </td><td>
   <%= text_field_tag('settings[map_width]', @settings['map_width'])%>
   </td></tr>

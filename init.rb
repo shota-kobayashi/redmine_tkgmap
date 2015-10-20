@@ -10,10 +10,11 @@ Redmine::Plugin.register :redmine_tkgmap do
   author_url 'https://github.com/shota-kobayashi/redmine_tkgmap'
 
   settings :default => {
+		'gmap_api_key' => '',
 		'map_width' => 400,
 		'map_height' => 400,
 		'default_lat' => 43.68731521012838,
-		'default_lng' => -79.37548889160155
+		'default_lng' => -79.37548889160155,
   }, :partial => 'settings/tkgmap_settings'
 end
 
