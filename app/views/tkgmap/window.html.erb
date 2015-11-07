@@ -1,16 +1,28 @@
 <%= javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap') %>
 <%= content_tag("script", "",{:src =>gmap_api_uri, :type =>'text/javascript', :charset=>'UTF-8'}) %>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #gmap {
+    height: 100%;
+  }
+</style>
 
 <script type="text/javascript">
 //<![CDATA[
 $(function(){
   initMap(<%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %>, true);
+  initMapCustomControl(document.getElementById("buttons"));
 });
 //]]>
 </script>
 
-<div id="gmap" style="width:<%= Setting.plugin_redmine_tkgmap['map_width'].to_s %>px;height:<%= Setting.plugin_redmine_tkgmap['map_height'].to_s %>px;"></div>
+<div id="gmap"></div>
+<div id="buttons">
 	<input type="button" onClick="returnValue();" value="<%= h l :set_lat_lng_tkg %>">
 	<input type="button" onClick="window.close();" value="<%= h l :window_close_tkg %>">
-<div id="point"></div>
+</div>
 
