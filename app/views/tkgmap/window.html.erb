@@ -14,7 +14,11 @@
 <script type="text/javascript">
 //<![CDATA[
 $(function(){
-  initMap(<%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %>, true);
+  var geo = [ <%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %> ];
+  if (/^[0-9]+\.[0-9]+,[0-9]+\.[0-9]+$/.test(window.opener.$("#" + window.name).val())) {
+    geo = window.opener.$("#" + window.name).val().split(",").map(parseFloat);
+  }
+  initMap(geo[0], geo[1], true);
   initMapCustomControl(document.getElementById("buttons"));
 });
 //]]>
