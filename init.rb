@@ -15,6 +15,7 @@ Redmine::Plugin.register :redmine_tkgmap do
 		'map_height' => 400,
 		'default_lat' => 43.68731521012838,
 		'default_lng' => -79.37548889160155,
+		'default_zoom' => 8,
   }, :partial => 'settings/tkgmap_settings'
 end
 

@@ -18,7 +18,7 @@ $(function(){
   if (/^[0-9]+\.[0-9]+,[0-9]+\.[0-9]+$/.test(window.opener.$("#" + window.name).val())) {
     geo = window.opener.$("#" + window.name).val().split(",").map(parseFloat);
   }
-  initMap(geo[0], geo[1], true);
+  initMap(geo[0], geo[1], true, <%= Setting.plugin_redmine_tkgmap['default_zoom'].to_i %>);
   initMapCustomControl(document.getElementById("buttons"));
 });
 //]]>

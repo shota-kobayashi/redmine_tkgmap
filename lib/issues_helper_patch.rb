@@ -26,7 +26,7 @@ module IssuesHelperPatch
 					latLng = show_value(value).split(",")
 					script ="//<![CDATA[
 						$(function(){
-							initMap(#{latLng[0]},#{latLng[1]}, false);
+							initMap(#{latLng[0]}, #{latLng[1]}, false, #{Setting.plugin_redmine_tkgmap['default_zoom'].to_i});
 						});
 					//]]>"
 				  s << javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap')

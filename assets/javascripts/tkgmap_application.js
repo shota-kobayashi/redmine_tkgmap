@@ -1,9 +1,9 @@
     var map;
     
-    function initMap(lat, lng, fixedCenter) {
+    function initMap(lat, lng, fixedCenter, zoom) {
       var latlng = new google.maps.LatLng(lat, lng);
       var opts = {
-        zoom: 8,
+        zoom: (zoom === undefined)? 8 : zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: latlng
       };
