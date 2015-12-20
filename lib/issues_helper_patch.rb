@@ -31,7 +31,8 @@ module IssuesHelperPatch
 						initMap(#{latLng[0]}, #{latLng[1]}, false);
 					});
 				//]]>"
-				s << "<a href=\"https://maps.google.com/maps?q=#{latLng[0]},#{latLng[1]}\">#{ simple_format_without_paragraph(h(show_value(value))) }</a><div id=\"gmap\" style=\"width:100%;height:200px;\"></div>"
+				label = latLng.map{|v| h(v) }.join(',<wbr />')
+				s << "<a href=\"https://maps.google.com/maps?q=#{latLng[0]},#{latLng[1]}\">#{label}</a><div id=\"gmap\" style=\"width:100%;height:200px;\"></div>"
 				s << content_tag("script", script,{:type =>'text/javascript'})
 				s.html_safe
 			else
