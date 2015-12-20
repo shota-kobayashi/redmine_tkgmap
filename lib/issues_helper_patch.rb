@@ -12,6 +12,18 @@ module IssuesHelperPatch
 		def show_tkgmap_value(value)
 			sv = show_value(value)
 			if (value.custom_field.field_format == Tkgmap::Identifier && sv =~ /\A-?[0-9\.]+,-?[0-9\.]+\Z/)
+				content_for :header_tags do
+					header_tags = []
+					if Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.2") # redmine >= 3.2
+						# responsive layout support for redmine >= 3.2
+						header_tags << stylesheet_link_tag('tkgmap_responsive.css', :plugin => 'redmine_tkgmap')
+					end
+					header_tags << javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap')
+					header_tags << javascript_include_tag('showMapWindow',:plugin => 'redmine_tkgmap')
+					header_tags << content_tag("script", "",{:src =>'https://maps.google.com/maps/api/js?v=3&sensor=false', :type =>'text/javascript', :charset=>'UTF-8'})
+					safe_join header_tags
+				end
+
 				s = ''
 				latLng = sv.split(",")
 				script ="//<![CDATA[
@@ -19,9 +31,6 @@ module IssuesHelperPatch
 						initMap(#{latLng[0]}, #{latLng[1]}, false);
 					});
 				//]]>"
-				s << javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap')
-				s << javascript_include_tag('showMapWindow',:plugin => 'redmine_tkgmap')
-				s << content_tag("script", "",{:src =>'https://maps.google.com/maps/api/js?v=3&sensor=false', :type =>'text/javascript', :charset=>'UTF-8'})
 				s << "<a href=\"https://maps.google.com/maps?q=#{latLng[0]},#{latLng[1]}\">#{ simple_format_without_paragraph(h(show_value(value))) }</a><div id=\"gmap\" style=\"width:100%;height:200px;\"></div>"
 				s << content_tag("script", script,{:type =>'text/javascript'})
 				s.html_safe
@@ -35,18 +44,11 @@ module IssuesHelperPatch
 			values = issue.try(:visible_custom_field_values) || issue.custom_field_values
 			return if values.empty?
 
-			if defined? issue_fields_rows # redmine-3.x
+			if Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.2") # redmine >= 3.2
 				half = (values.size / 2.0).ceil
 
 				issue_fields_rows do |rows|
 					values.each_with_index do |value, i|
-						sn = ""
-						if defined? custom_field_name_tag # redmine-3.1+
-							sn = custom_field_name_tag(value.custom_field)
-						else # redmine-3.0
-							sn = h(value.custom_field.name)
-						end
-						sv = ""
 						if value.custom_field.field_format == Tkgmap::Identifier
 							sv = show_tkgmap_value(value)
 						else
@@ -54,11 +56,12 @@ module IssuesHelperPatch
 						end
 
 						css = "cf_#{value.custom_field.id}"
+						css << ' tkgmap' if value.custom_field.field_format == Tkgmap::Identifier
 						m = (i < half ? :left : :right)
-						rows.send m, sn, sv, :class => css
+						rows.send m, custom_field_name_tag(value.custom_field), sv, :class => css
 					end
 				end
-			else # redmine 2.x
+			else # redmine < 3.2
 				ordered_values = []
 				half = (values.size / 2.0).ceil
 				half.times do |i| 
