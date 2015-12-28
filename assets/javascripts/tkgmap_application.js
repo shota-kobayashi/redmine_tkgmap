@@ -11,6 +11,12 @@
 			setMarker(lat, lng, map, fixedCenter);
     }
 
+    function initMapCustomControl(controlUI) {
+        controlUI.index = 1;
+        controlUI.style.marginBottom = "15px";
+        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(controlUI);
+    }
+
 		function setLatLng(id) {
 				document.getElementById(id).value= map.getCenter();
 		}

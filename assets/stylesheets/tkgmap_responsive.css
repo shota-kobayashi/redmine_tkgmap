@@ -1,0 +1,9 @@
+@media all and (max-width: 499px) {
+    div.issue .attribute.tkgmap .value a {
+        display: block;
+        margin-left: 180px;
+    }
+    div.issue .attribute.tkgmap .value {
+        margin-left: -180px;
+    }
+}
