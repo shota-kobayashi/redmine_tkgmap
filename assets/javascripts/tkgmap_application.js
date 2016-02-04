@@ -11,6 +11,11 @@
 			setMarker(lat, lng, map, fixedCenter);
     }
 
+    function initMapSearchControl(controlUI) {
+        controlUI.index = 1;
+        controlUI.style.marginTop = "5px";
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlUI);
+    }
     function initMapCustomControl(controlUI) {
         controlUI.index = 1;
         controlUI.style.marginBottom = "15px";
@@ -44,8 +49,27 @@
 				}
 		}
 
+    function searchMap() {
+      var value = document.getElementById("search").value;
+      if (value.replace(/\s/g, "") != "") {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({address: value}, function(results) {
+          if (results && results.length > 0) {
+            var result = results[0];
+            document.getElementById("search").value = result.formatted_address;
+            if (result.geometry.viewport) {
+              map.fitBounds(result.geometry.viewport);
+            } else {
+              map.setCenter(result.geometry.location);
+            }
+          }
+        });
+      }
+    }
+
     function returnValue() {
 			var latLng = map.getCenter();
       latLng = new google.maps.LatLng(latLng.lat(), latLng.lng()); // see https://code.google.com/p/gmaps-api-issues/issues/detail?id=3247
       window.opener.$("#" + window.name).val(latLng.lat() + "," + latLng.lng());
     }
+

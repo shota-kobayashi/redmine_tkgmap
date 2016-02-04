@@ -19,12 +19,14 @@ $(function(){
     geo = window.opener.$("#" + window.name).val().split(",").map(parseFloat);
   }
   initMap(geo[0], geo[1], true, <%= Setting.plugin_redmine_tkgmap['default_zoom'].to_i %>);
+  initMapSearchControl(document.getElementById("search"));
   initMapCustomControl(document.getElementById("buttons"));
 });
 //]]>
 </script>
 
 <div id="gmap"></div>
+<input id="search" onChange="searchMap();" type="search" placeholder="<%= h l :label_search %>">
 <div id="buttons">
 	<input type="button" onClick="returnValue();" value="<%= h l :set_lat_lng_tkg %>">
 	<input type="button" onClick="window.close();" value="<%= h l :window_close_tkg %>">
