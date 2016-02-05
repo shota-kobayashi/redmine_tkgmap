@@ -26,9 +26,11 @@ module IssuesHelperPatch
 
 				s = ''
 				latLng = sv.split(",")
+				default_zoom = 'undefined'
+				default_zoom = Setting.plugin_redmine_tkgmap['default_zoom'].to_i if default_zoom.present?
 				script ="//<![CDATA[
 					$(function(){
-						initMap(#{latLng[0]}, #{latLng[1]}, false);
+						initMap(#{latLng[0]}, #{latLng[1]}, false, #{default_zoom});
 					});
 				//]]>"
 				label = latLng.map{|v| h(v) }.join(',<wbr />')
