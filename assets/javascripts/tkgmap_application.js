@@ -50,18 +50,22 @@
 		}
 
     function searchMap() {
-      var value = document.getElementById("search").value;
+      var oSearch = document.getElementById("search");
+      var value = oSearch.value;
       if (value.replace(/\s/g, "") != "") {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({address: value}, function(results) {
           if (results && results.length > 0) {
             var result = results[0];
-            document.getElementById("search").value = result.formatted_address;
+            oSearch.value = result.formatted_address;
             if (result.geometry.viewport) {
               map.fitBounds(result.geometry.viewport);
             } else {
               map.setCenter(result.geometry.location);
             }
+          } else {
+            alert(oSearch.getAttribute("data-place-not-found-msg"));
+            oSearch.select();
           }
         });
       }

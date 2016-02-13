@@ -28,7 +28,7 @@ $(function(){
 </script>
 
 <div id="gmap"></div>
-<input id="search" onChange="searchMap();" type="search" placeholder="<%= h l :label_search %>">
+<input id="search" onChange="searchMap();" type="search" placeholder="<%= h l :label_search %>" data-place-not-found-msg="<%= h l :place_not_found %>">
 <div id="buttons">
 	<input type="button" onClick="returnValue();" value="<%= h l :set_lat_lng_tkg %>">
 	<input type="button" onClick="window.close();" value="<%= h l :window_close_tkg %>">
