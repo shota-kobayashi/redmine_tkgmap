@@ -14,7 +14,7 @@
     function initMapSearchControl(controlUI) {
         controlUI.index = 1;
         controlUI.style.marginTop = "5px";
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlUI);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlUI);
     }
     function initMapCustomControl(controlUI) {
         controlUI.index = 1;
