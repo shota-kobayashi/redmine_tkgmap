@@ -1,5 +1,7 @@
+<%= content_for :header_tags do %>
 <%= javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap') %>
 <%= content_tag("script", "",{:src =>gmap_api_uri, :type =>'text/javascript', :charset=>'UTF-8'}) %>
+<% end %>
 <style>
   html, body {
     height: 100%;

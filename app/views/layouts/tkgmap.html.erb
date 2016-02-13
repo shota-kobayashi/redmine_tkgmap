@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= current_language %>">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="initial-scale=1.0" />
 <title><%=h html_title %></title>
 <%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
 <%= javascript_heads %>
+<%= yield :header_tags %>
 </head>
 <body style="min-width:0px;">
 	<%= yield %>
