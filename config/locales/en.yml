@@ -3,3 +3,4 @@ en:
   label_tkg: "LatLng"
   set_lat_lng_tkg: "Select"
   window_close_tkg: "Close"
+  place_not_found: "Place not found"

@@ -36,10 +36,11 @@ e) Optionally select 'searchable' setting for custom field. Allows using custom-
   
 ----
 ## Japanese screenshots
-![Issue with inline map and location field](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss2.jpg)  
+![Issue with inline map and location field](https://cloud.githubusercontent.com/assets/379009/13290664/055d3d68-db58-11e5-9755-c13b58735aef.png)
   
-![Update Issue with modifiable location in popup window](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss1.jpg)  
+![Update Issue with modifiable location in popup window](https://cloud.githubusercontent.com/assets/379009/13290670/0880728a-db58-11e5-8add-06822784361f.png)
   
-![Configure Default settings for tkgmap](https://raw.github.com/shota-kobayashi/redmine_tkgmap/master/assets/images/ss3.jpg)  
+![Configure Default settings for tkgmap](https://cloud.githubusercontent.com/assets/379009/13290675/0b8baa6c-db58-11e5-8258-b99f97c146d6.png)
+
   
 ----

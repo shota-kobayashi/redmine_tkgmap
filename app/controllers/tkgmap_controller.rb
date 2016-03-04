@@ -7,4 +7,5 @@ class TkgmapController < ApplicationController
 
   def window
   end
+
 end

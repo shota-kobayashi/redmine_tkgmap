@@ -3,3 +3,4 @@ ja:
   label_tkg: "経度緯度"
   set_lat_lng_tkg: "座標を指定"
   window_close_tkg: "ウィンドウを閉じる"
+  place_not_found: "場所が見つかりませんでした"

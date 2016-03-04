@@ -1,5 +1,7 @@
+<%= content_for :header_tags do %>
 <%= javascript_include_tag('tkgmap_application',:plugin => 'redmine_tkgmap') %>
-<%= content_tag("script", "",{:src =>'https://maps.google.com/maps/api/js?v=3&sensor=false', :type =>'text/javascript', :charset=>'UTF-8'}) %>
+<%= content_tag("script", "",{:src =>gmap_api_uri, :type =>'text/javascript', :charset=>'UTF-8'}) %>
+<% end %>
 <style>
   html, body {
     height: 100%;
@@ -14,13 +16,19 @@
 <script type="text/javascript">
 //<![CDATA[
 $(function(){
-  initMap(<%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %>, true);
+  var geo = [ <%= Setting.plugin_redmine_tkgmap['default_lat'].to_s %>, <%= Setting.plugin_redmine_tkgmap['default_lng'].to_s %> ];
+  if (/^[0-9]+\.[0-9]+,[0-9]+\.[0-9]+$/.test(window.opener.$("#" + window.name).val())) {
+    geo = window.opener.$("#" + window.name).val().split(",").map(parseFloat);
+  }
+  initMap(geo[0], geo[1], true, <%= Setting.plugin_redmine_tkgmap['default_zoom'].to_i %>);
+  initMapSearchControl(document.getElementById("search"));
   initMapCustomControl(document.getElementById("buttons"));
 });
 //]]>
 </script>
 
 <div id="gmap"></div>
+<input id="search" onChange="searchMap();" type="search" placeholder="<%= h l :label_search %>" data-place-not-found-msg="<%= h l :place_not_found %>">
 <div id="buttons">
 	<input type="button" onClick="returnValue();" value="<%= h l :set_lat_lng_tkg %>">
 	<input type="button" onClick="window.close();" value="<%= h l :window_close_tkg %>">
