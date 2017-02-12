@@ -3,6 +3,7 @@
     function initMap(lat, lng, fixedCenter, zoom) {
       var latlng = new google.maps.LatLng(lat, lng);
       var opts = {
+        gestureHandling: "auto",
         zoom: (zoom === undefined)? 8 : zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: latlng
