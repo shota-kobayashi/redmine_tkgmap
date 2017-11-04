@@ -49,29 +49,28 @@ module IssuesHelperPatch
 
 		if Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.4") # redmine >= 3.4
 
-		def render_half_width_custom_fields_rows(issue)
-			values = issue.try(:visible_custom_field_values) || issue.custom_field_values
-			return if values.empty?
-			half = (values.size / 2.0).ceil
-			issue_fields_rows do |rows|
-				values.each_with_index do |value, i|
-					sv = (value.custom_field.field_format == Tkgmap::Identifier)? show_tkgmap_value(value) : show_value(value)
+			def render_half_width_custom_fields_rows(issue)
+				values = issue.try(:visible_custom_field_values) || issue.custom_field_values
+				return if values.empty?
+				half = (values.size / 2.0).ceil
+				issue_fields_rows do |rows|
+					values.each_with_index do |value, i|
+						sv = (value.custom_field.field_format == Tkgmap::Identifier)? show_tkgmap_value(value) : show_value(value)
 
-					css = "cf_#{value.custom_field.id}".dup
-					css << ' tkgmap' if value.custom_field.field_format == Tkgmap::Identifier
-					m = (i < half ? :left : :right)
-					rows.send m, custom_field_name_tag(value.custom_field), sv, :class => css
+						css = "cf_#{value.custom_field.id}".dup
+						css << ' tkgmap' if value.custom_field.field_format == Tkgmap::Identifier
+						m = (i < half ? :left : :right)
+						rows.send m, custom_field_name_tag(value.custom_field), sv, :class => css
+					end
 				end
 			end
-		end
 
-		else # redmine < 3.4
+		elsif Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.2") # redmine >= 3.2
 
-		def render_custom_fields_rows_with_tkg(issue)
-			values = issue.try(:visible_custom_field_values) || issue.custom_field_values
-			return if values.empty?
+			def render_custom_fields_rows_with_tkg(issue)
+				values = issue.try(:visible_custom_field_values) || issue.custom_field_values
+				return if values.empty?
 
-			if Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.2") # redmine >= 3.2
 				half = (values.size / 2.0).ceil
 
 				issue_fields_rows do |rows|
@@ -88,7 +87,13 @@ module IssuesHelperPatch
 						rows.send m, custom_field_name_tag(value.custom_field), sv, :class => css
 					end
 				end
-			else # redmine < 3.2
+			end
+		else # redmine < 3.2
+
+			def render_custom_fields_rows_with_tkg(issue)
+				values = issue.try(:visible_custom_field_values) || issue.custom_field_values
+				return if values.empty?
+
 				ordered_values = []
 				half = (values.size / 2.0).ceil
 				half.times do |i| 
@@ -112,7 +117,6 @@ module IssuesHelperPatch
 				s << "</tr>\n"
 				s.html_safe
 			end
-		end
 		end
 
 	end
