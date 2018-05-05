@@ -2,14 +2,7 @@ require_dependency 'issues_helper'
 
 module IssuesHelperPatch
 	def self.included(base)
-		if Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.4") # redmine >= 3.4
-			base.send(:prepend, InstanceMethods)
-		else
-			base.send(:include, InstanceMethods)
-			base.class_eval do
-				alias_method_chain :render_custom_fields_rows, :tkg
-			end
-		end
+		base.send(:prepend, InstanceMethods)
 	end
 
 	module InstanceMethods
@@ -67,7 +60,7 @@ module IssuesHelperPatch
 
 		elsif Gem::Version.new([Redmine::VERSION::MAJOR, Redmine::VERSION::MINOR].join(".")) >= Gem::Version.new("3.2") # redmine >= 3.2
 
-			def render_custom_fields_rows_with_tkg(issue)
+			def render_custom_fields_rows(issue)
 				values = issue.try(:visible_custom_field_values) || issue.custom_field_values
 				return if values.empty?
 
@@ -90,7 +83,7 @@ module IssuesHelperPatch
 			end
 		else # redmine < 3.2
 
-			def render_custom_fields_rows_with_tkg(issue)
+			def render_custom_fields_rows(issue)
 				values = issue.try(:visible_custom_field_values) || issue.custom_field_values
 				return if values.empty?
 
