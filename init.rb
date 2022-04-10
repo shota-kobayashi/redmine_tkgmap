@@ -1,5 +1,6 @@
-require 'custom_fields_helper_patch'
-require 'issues_helper_patch'
+require File.expand_path('../lib/tkgmap.rb', __FILE__)
+require File.expand_path('../lib/tkgmap_custom_fields_helper_patch.rb', __FILE__)
+require File.expand_path('../lib/tkgmap_issues_helper_patch.rb', __FILE__)
 
 Redmine::Plugin.register :redmine_tkgmap do
   name 'Redmine Tkgmap plugin'
@@ -19,29 +20,22 @@ Redmine::Plugin.register :redmine_tkgmap do
   }, :partial => 'settings/tkgmap_settings'
 end
 
-class Tkgmap < Redmine::FieldFormat::Unbounded
-	add 'tkg'
-	Identifier = "tkg"
-	
-	def format_name
-	 "tkg"
-	end
-	
-	def label
-	 "label_tkg"
-	end
-	
-	def format_as_tkg(value)
-		value
-	end
-end
-Redmine::FieldFormat.add 'tkg', Tkgmap
-
-Rails.configuration.to_prepare do
-    unless CustomFieldsHelper.included_modules.include?(CustomFieldsHelperPatch)
-        CustomFieldsHelper.send(:include, CustomFieldsHelperPatch)
-    end  
-    unless IssuesHelper.included_modules.include?(IssuesHelperPatch)
-        IssuesHelper.send(:include, IssuesHelperPatch)
-    end  
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+  Rails.application.config.after_initialize do
+    unless CustomFieldsHelper.included_modules.include?(TkgmapCustomFieldsHelperPatch)
+      CustomFieldsHelper.send(:include, TkgmapCustomFieldsHelperPatch)
+    end
+    unless IssuesHelper.included_modules.include?(TkgmapIssuesHelperPatch)
+      IssuesHelper.send(:include, TkgmapIssuesHelperPatch)
+    end
+  end
+else
+  Rails.configuration.to_prepare do
+    unless CustomFieldsHelper.included_modules.include?(TkgmapCustomFieldsHelperPatch)
+      CustomFieldsHelper.send(:include, TkgmapCustomFieldsHelperPatch)
+    end
+    unless IssuesHelper.included_modules.include?(TkgmapIssuesHelperPatch)
+      IssuesHelper.send(:include, TkgmapIssuesHelperPatch)
+    end
+  end
 end

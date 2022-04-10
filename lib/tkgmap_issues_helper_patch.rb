@@ -1,6 +1,6 @@
-require_dependency 'issues_helper'
+require_dependency 'issues_helper' unless Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
 
-module IssuesHelperPatch
+module TkgmapIssuesHelperPatch
 	def self.included(base)
 		base.send(:prepend, InstanceMethods)
 	end
@@ -115,4 +115,4 @@ module IssuesHelperPatch
 	end
 end
 
-IssuesHelper.send(:include, IssuesHelperPatch)
+IssuesHelper.send(:include, TkgmapIssuesHelperPatch)
