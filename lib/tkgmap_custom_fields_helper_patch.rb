@@ -1,6 +1,6 @@
-require_dependency 'custom_fields_helper'
+require_dependency 'custom_fields_helper' unless Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
 
-module CustomFieldsHelperPatch
+module TkgmapCustomFieldsHelperPatch
 	def self.included(base)
 		base.send(:prepend, InstanceMethods)
 	end
@@ -24,4 +24,4 @@ module CustomFieldsHelperPatch
 	end
 end
 
-CustomFieldsHelper.send(:include, CustomFieldsHelperPatch)
+CustomFieldsHelper.send(:include, TkgmapCustomFieldsHelperPatch)
