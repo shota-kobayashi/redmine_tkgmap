@@ -1,5 +1,5 @@
 class TkgmapController < ApplicationController
-  unloadable
+  unloadable if respond_to?(:unloadable)
   layout 'tkgmap'
 
   def index
